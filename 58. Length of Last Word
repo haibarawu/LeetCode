@@ -1,4 +1,4 @@
-//solution01:
+//Java solution01:
 public class Solution {
     public int lengthOfLastWord(String s) {
         int len = s.length();
@@ -21,7 +21,7 @@ public class Solution {
 
 
 
-//solution02:
+//Java solution02:
 public class Solution
 {
     public int lengthOfLastWord(String s)
