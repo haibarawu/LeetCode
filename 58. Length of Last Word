@@ -1,0 +1,50 @@
+//solution01:
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        int len = s.length();
+        if(s == null ||len == 0) {return 0;}
+        
+        int result = 0;
+        
+        for(int i = len - 1; i >= 0; i--){
+            if (s.charAt(i) != ' ') { 
+                result++;
+            }
+            else if(s.charAt(i) == ' ' && result != 0){
+                return result;
+            }
+        }
+        
+        return result;
+    }
+}
+
+
+
+//solution02:
+public class Solution
+{
+    public int lengthOfLastWord(String s)
+    {
+        int len = s.length();
+        int result = 0;
+        int i = len - 1;
+        
+        if(s == null ||len == 0) {return 0;}
+
+        // ignore the trailing whitespace
+        while(i >= 0 && s.charAt(i) == ' ')
+        {
+            i--;
+        }
+
+        // count from tail until whitespace
+        while(i >= 0 && s.charAt(i) != ' ')
+        {
+            i--;
+            result++;
+        }
+
+        return result;
+    }
+}
