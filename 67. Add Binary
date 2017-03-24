@@ -1,0 +1,42 @@
+//Java solution:
+public class Solution {
+    public String addBinary(String a, String b) {
+        char arra[] = a.toCharArray();
+        char arrb[] = b.toCharArray();
+        int lena = a.length() - 1;
+        int lenb = b.length() - 1;
+        int lenre = Math.max(lena, lenb) + 1;
+        int result[] = new int[lenre+1];
+        int na, nb;
+        int carry = 0;
+        
+        while(lena >= 0 || lenb >= 0){
+            na = 0;
+            nb = 0;
+            if(lena >= 0){
+                na = Integer.parseInt(String.valueOf(arra[lena]));
+            }
+            if(lenb >= 0){
+                nb = Integer.parseInt(String.valueOf(arrb[lenb]));
+            }
+            result[Math.max(lena, lenb)+1] = (na + nb + carry) % 2;
+            carry = (na + nb + carry) / 2;
+            lena--;
+            lenb--;
+        }
+        
+        int index;
+        if(carry > 0){
+            result[0] = carry;
+            index = 0;
+        }
+        else{index = 1;}
+        
+        StringBuilder string = new StringBuilder();
+        for(; index < result.length; index++){
+            string.append(result[index]);
+        }
+        
+        return string.toString();
+    }
+}
