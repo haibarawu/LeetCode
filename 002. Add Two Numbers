@@ -1,0 +1,57 @@
+//C++ solution:
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if (l1==NULL) {return l2;}
+        if (l2==NULL) {return l1;}
+        
+        ListNode* res = NULL;
+        ListNode* result = NULL;
+        
+        int value = 0;
+        int carry = 0;
+        
+        while(l1 != NULL || l2 != NULL) {
+            value = carry;
+            if(l1 != NULL) {
+                value = value + l1->val;
+            }
+            if(l2 != NULL){
+                value = value + l2->val;
+            }
+            carry = value / 10;
+            value = value - carry * 10;
+            
+            if(res == NULL){
+                res = new ListNode(value);
+                result = res;
+            }
+            else{
+                res->next = new ListNode(value);
+                res = res->next;
+            }
+            
+            if(l1 != NULL){
+                l1 = l1->next;
+            }
+            if(l2 != NULL){
+                l2 = l2->next;
+            }
+        }
+        
+        if(carry != 0){
+            res->next = new ListNode(carry);
+        }
+        
+        return result;
+    }
+};
