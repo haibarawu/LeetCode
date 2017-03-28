@@ -1,0 +1,29 @@
+?*
+Determine whether an integer is a palindrome. Do this without extra space.
+*/
+
+//C++ solution:
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x < 0) {return false;}
+        
+        int divide = 1;
+        
+        while(x / divide >= 10){
+            divide = divide * 10;
+        }
+        
+        while(x > 0){
+            int i = x / divide;
+            int j = x % 10;
+            
+            if(i != j){return false;}
+            
+            x = x % divide / 10;
+            divide = divide / 100;
+        }
+        
+        return true;
+    }
+};
