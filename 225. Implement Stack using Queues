@@ -1,0 +1,62 @@
+/*
+// Implement the following operations of a stack using queues.
+
+// push(x) -- Push element x onto stack.
+// pop() -- Removes the element on top of the stack.
+// top() -- Get the top element.
+// empty() -- Return whether the stack is empty.
+*/
+
+class MyStack {
+
+    private Queue<Integer> value = new LinkedList<>();
+    private Queue<Integer> temp = new LinkedList<>();
+    private int top;
+    
+    /** Initialize your data structure here. */
+    public MyStack() {
+        
+    }
+    
+    /** Push element x onto stack. */
+    public void push(int x) {
+        value.add(x);
+        top = x;
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        while (value.size() > 1) {
+            top = value.remove();
+            temp.add(top);
+        }
+        
+        int element = value.remove();
+        
+        while (temp.size() > 0) {
+            top = temp.remove();
+            value.add(top);
+        }
+        
+        return element;
+    }
+    
+    /** Get the top element. */
+    public int top() {
+        return top;
+    }
+    
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        return value.isEmpty();
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
