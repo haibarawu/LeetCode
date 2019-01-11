@@ -1,0 +1,37 @@
+/*
+// Given a n-ary tree, find its maximum depth.
+// The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+*/
+
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val,List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+
+class Solution {
+    public int maxDepth(Node root) {
+        if (root == null) {
+            return 0;
+        } 
+        else if (root.children.isEmpty()) {
+            return 1;  
+        } 
+        else {
+            List<Integer> depths = new LinkedList<>();
+            for (Node item : root.children) {
+                depths.add(maxDepth(item)); 
+            }
+            return Collections.max(depths) + 1;
+        }
+    }
+}
