@@ -1,0 +1,61 @@
+/********************
+1002. Find Common Characters
+
+Given an array A of strings made only from lowercase letters, 
+return a list of all characters that show up in all strings within the list (including duplicates).  
+For example, if a character occurs 3 times in all strings but not 4 times, 
+you need to include that character three times in the final answer.
+You may return the answer in any order.
+
+Example 1:
+Input: ["bella","label","roller"]
+Output: ["e","l","l"]
+
+Example 2:
+Input: ["cool","lock","cook"]
+Output: ["c","o"]
+
+Note:
+1 <= A.length <= 100
+1 <= A[i].length <= 100
+A[i][j] is a lowercase letter
+********************/
+
+/********************
+//首先数列中的每个字符串需要对26个字母统计频率，
+//然后要比较所有字符串里面每个字母的频率，取最小值，就是在所有字符串里面出现的频率，并且是包括重复的情况。
+********************/
+
+
+// TC: O(m * n) 
+// SC: O(1) 
+
+class Solution {
+    public List<String> commonChars(String[] A) {
+        int len = A.length;
+        int[][] count = new int[len][26];
+        
+        for (int i = 0; i < len; i ++) {
+            for (char c : A[i].toCharArray()) {
+                count[i][c - 'a'] ++;
+            }
+        }
+        
+        List<String> result = new ArrayList();
+        String s; 
+        for (int i = 0; i < 26; i ++) {
+            int min = 100;
+            
+            for (int j = 0; j < len; j ++) {
+                min = Math.min(min, count[j][i]);
+            }
+            
+            for (int k = 0; k < min; k ++) {
+                s = String.valueOf((char)(i + 'a'));
+                result.add(s);
+            }
+        }
+        
+        return result;
+    }
+}
