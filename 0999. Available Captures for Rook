@@ -76,7 +76,7 @@ There is exactly one cell with board[i][j] == 'R'
 ****************************************/
 
 
-/***** Solution_01 *****/
+/***************************************** Solution_01 ****************************************/
 
 class Solution {
     public int numRookCaptures(char[][] board) {
@@ -135,9 +135,64 @@ class Solution {
 
 
 
+/**************************************** Solution_02 ****************************************/
+
+class Solution {
+    public int numRookCaptures(char[][] board) {
+        for (int i = 0; i < board.length; ++i) {
+            for (int j = 0; j < board[i].length; ++j) {
+                if (board[i][j] == 'R') 
+                    return cap(board,i,j,0,1)+cap(board,i,j,0,-1)+cap(board,i,j,1,0)+cap(board,i,j,-1,0);
+            }
+        }
+        return 0;
+    }
+    
+    private int cap(char[][] board, int x, int y, int r, int c) {
+        while (x >= 0 && x < board.length 
+               && y >= 0 && y < board[x].length 
+               && board[x][y] != 'B') {
+            if (board[x][y] == 'p') {return 1;}
+            x += r; y += c;
+        }
+        return 0;
+    }
+}
 
 
 
 
+/**************************************** Solution_03 ****************************************/
 
-
+class Solution {
+    public int numRookCaptures(char[][] board) {
+        int[] point = new int[2];
+        int row = board.length;
+        int col = board[0].length;
+        
+        for(int i = 0 ; i < row ; i++) {
+            for(int j = 0 ; j < col ; j++) {
+                if(board[i][j] == 'R') {
+                    point[0] = i;
+                    point[1] = j;
+                    break;
+                }
+            }
+        }
+        
+        int result = 0;
+        int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
+        
+        for(int[] dir : dirs) {
+            int x = point[0] + dir[0];
+            int y = point[1] + dir[1];
+            while(x >= 0 && y >= 0 && x < row && y < col && board[x][y] == '.') {
+                x += dir[0];
+                y += dir[1];
+            }
+            if(x < 0 || y < 0 || x >= row || y >= col) continue;
+            if(board[x][y] == 'p') {result++;}
+        }
+        return result;
+    }
+}
