@@ -1,0 +1,143 @@
+/****************************************
+999. Available Captures for Rook
+
+Mode: Easy
+
+On an 8 x 8 chessboard, there is one white rook.  
+There also may be empty squares, white bishops, and black pawns.  
+These are given as characters 'R', '.', 'B', and 'p' respectively. 
+Uppercase characters represent white pieces, and lowercase characters represent black pieces.
+The rook moves as in the rules of Chess: 
+it chooses one of four cardinal directions (north, east, west, and south), 
+then moves in that direction until it chooses to stop, reaches the edge of the board, 
+or captures an opposite colored pawn by moving to the same square it occupies.  
+Also, rooks cannot move into the same square as other friendly bishops.
+Return the number of pawns the rook can capture in one move.
+
+Example 1:
+Input: 
+[[".",".",".",".",".",".",".","."]
+,[".",".",".","p",".",".",".","."]
+,[".",".",".","R",".",".",".","p"]
+,[".",".",".",".",".",".",".","."]
+,[".",".",".",".",".",".",".","."]
+,[".",".",".","p",".",".",".","."]
+,[".",".",".",".",".",".",".","."]
+,[".",".",".",".",".",".",".","."]]
+Output: 3
+Explanation: 
+In this example the rook is able to capture all the pawns.
+
+Example 2:
+Input: 
+[[".",".",".",".",".",".",".","."]
+,[".","p","p","p","p","p",".","."]
+,[".","p","p","B","p","p",".","."]
+,[".","p","B","R","B","p",".","."]
+,[".","p","p","B","p","p",".","."]
+,[".","p","p","p","p","p",".","."]
+,[".",".",".",".",".",".",".","."]
+,[".",".",".",".",".",".",".","."]]
+Output: 0
+Explanation: 
+Bishops are blocking the rook to capture any pawn.
+
+Example 3:
+Input: 
+[[".",".",".",".",".",".",".","."]
+,[".",".",".","p",".",".",".","."]
+,[".",".",".","p",".",".",".","."]
+,["p","p",".","R",".","p","B","."]
+,[".",".",".",".",".",".",".","."]
+,[".",".",".","B",".",".",".","."]
+,[".",".",".","p",".",".",".","."]
+,[".",".",".",".",".",".",".","."]]
+Output: 3
+Explanation: 
+The rook can capture the pawns at positions b5, d6 and f5.
+
+Note:
+board.length == board[i].length == 8
+board[i][j] is either 'R', '.', 'B', or 'p'
+There is exactly one cell with board[i][j] == 'R'
+
+****************************************/
+
+/****************************************
+解题思路： 
+题目问从'R'点开始上下左右直走，碰到'B'，'p'，或者边界则停止，可能遇到多少个'p'。
+我们用result记录可能遇到的p的数量，遍历整个board。 
+当遇到'R'时，我们尝试从'R'的位置开始，向四个方向移动： 
+1) 当遇到边界，则停止当前方向探索； 
+2) 当遇到'B'时，则停止当前方向探索； 
+3) 当遇到'p'时，result++，并停止当前方向探索； 
+4) 当四个方向均探索完毕，则可以直接返回count_p。 
+如果遍历board结束仍没有返回，则说明不存在'R'，可返回0。
+****************************************/
+
+
+/***** Solution_01 *****/
+
+class Solution {
+    public int numRookCaptures(char[][] board) {
+        int row = board.length;
+        int col = board[0].length;
+        int result = 0;
+        int r = 0;
+        int c = 0;
+        
+        for (int i = 0; i < row; i ++) {
+            for (int j = 0; j < col; j ++) {
+                if (board[i][j] == 'R') {
+                    r = i;
+                    c = j;
+                    break;
+                }
+            }
+        }
+        
+        for (int i = r+1; i < row; i ++) {
+            if (board[i][c] == 'B') {break;}
+            else if (board[i][c] == 'p') {
+                result ++;
+                break;
+            }
+        }
+        
+        for (int i = r-1; i >= 0; i --) {
+            if (board[i][c] == 'B') {break;}
+            else if (board[i][c] == 'p') {
+                result ++;
+                break;
+            }
+        }
+        
+        for (int i = c+1; i < col; i ++) {
+            if (board[r][i] == 'B') {break;}
+            else if (board[r][i] == 'p') {
+                result ++;
+                break;
+            }
+        }
+        
+        for (int i = c-1; i >= 0; i --) {
+            if (board[r][i] == 'B') {break;}
+            else if (board[r][i] == 'p') {
+                result ++;
+                break;
+            }
+        }
+        
+        return result;
+    }
+}
+
+
+
+
+
+
+
+
+
+
