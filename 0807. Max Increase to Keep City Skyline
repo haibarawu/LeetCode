@@ -1,0 +1,77 @@
+/****************************************
+807. Max Increase to Keep City Skyline
+Difficulty: Medium
+
+In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there. 
+We are allowed to increase the height of any number of buildings, 
+by any amount (the amounts can be different for different buildings). 
+Height 0 is considered to be a building as well. 
+
+At the end, the "skyline" when viewed from all four directions of the grid, 
+i.e. top, bottom, left, and right, must be the same as the skyline of the original grid. 
+A city's skyline is the outer contour of the rectangles formed by all the buildings when viewed from a distance. 
+See the following example.
+
+What is the maximum total sum that the height of the buildings can be increased?
+
+Example:
+Input: grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]
+Output: 35
+Explanation: 
+The grid is:
+[ [3, 0, 8, 4], 
+  [2, 4, 5, 7],
+  [9, 2, 6, 3],
+  [0, 3, 1, 0] ]
+
+The skyline viewed from top or bottom is: [9, 4, 8, 7]
+The skyline viewed from left or right is: [8, 7, 9, 3]
+
+The grid after increasing the height of buildings without affecting skylines is:
+gridNew = [ [8, 4, 8, 7],
+            [7, 4, 7, 7],
+            [9, 4, 8, 7],
+            [3, 3, 3, 3] ]
+
+Notes:
+1 < grid.length = grid[0].length <= 50.
+All heights grid[i][j] are in the range [0, 100].
+All buildings in grid[i][j] occupy the entire grid cell: that is, they are a 1 x 1 x grid[i][j] rectangular prism.
+
+****************************************/
+
+/****************************************
+这道题给了我们一个二维数组，数组中的每个数字代表了一栋建筑的高度，
+那么从四个方向看去，就会有城市的天际线，这个天际线就是由这些建筑的最高的边形成的，
+现在让我们在不改变天际线的前提下，问最多可以增高建筑的总高度。
+那么既然不能改变天际线，我们就要清楚天际线是由啥组成的，是最高的建筑物，
+那么就是说每行或每列的最高那个建筑不能变，
+而其他建筑物在不超过该行该列中最高建筑的高度情况下是可以有升高空间的。
+我们首先需要求出各行各列的最大值，成为一个限制高度，
+然后就遍历每个建筑，用该行最大值和该列最大值中的较小值，作为建筑物的高度极限值，
+所以这个极限值和当前建筑的高度之差就是可以增加的高度，
+我们累计所有建筑的可增加的高度，就是所求的最大增高。
+****************************************/
+
+
+class Solution {
+    public int maxIncreaseKeepingSkyline(int[][] grid) {
+        int row = grid.length;
+        int col = grid[0].length;
+        int[] rowMaxes = new int[row];
+        int[] colMaxes = new int[col];
+
+        for (int r = 0; r < row; r ++)
+            for (int c = 0; c < col; c ++) {
+                rowMaxes[r] = Math.max(rowMaxes[r], grid[r][c]);
+                colMaxes[c] = Math.max(colMaxes[c], grid[r][c]);
+        }
+
+        int result = 0;
+        for (int r = 0; r < row; r ++)
+            for (int c = 0; c < col; c ++)
+                result += Math.min(rowMaxes[r], colMaxes[c]) - grid[r][c];
+
+        return result;
+    }
+}
