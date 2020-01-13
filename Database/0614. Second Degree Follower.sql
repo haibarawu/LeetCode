@@ -42,6 +42,15 @@ INSERT INTO follow (followee, follower) VALUES ('B', 'D')
 INSERT INTO follow (followee, follower) VALUES ('D', 'E')
 
 
+--Method1:
+SELECT f1.follower, COUNT(DISTINCT f2.follower) AS num
+FROM follow AS f1
+INNER JOIN follow AS f2 
+ON f1.follower = f2.followee
+GROUP BY f1.follower
+
+
+--Method2: 
 SELECT DISTINCT f.follower, n.num
 FROM follow AS f
 INNER JION
