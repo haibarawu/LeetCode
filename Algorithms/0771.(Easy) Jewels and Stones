@@ -1,4 +1,8 @@
-/********************
+/****************************************************************************************************
+771. Jewels and Stones
+
+Difficulty: Easy
+
 You're given strings J representing the types of stones that are jewels, and S representing the stones you have.  
 Each character in S is a type of stone you have.  
 You want to know how many of the stones you have are also jewels.
@@ -16,9 +20,10 @@ Output: 0
 Note:
 S and J will consist of letters and have length at most 50.
 The characters in J are distinct.
-********************/
+****************************************************************************************************/
 
-/*
+
+//Method1: 
 class Solution {
     public int numJewelsInStones(String J, String S) {
 
@@ -34,9 +39,9 @@ class Solution {
         return count;
     }
 }
-*/
 
-/*
+
+//Method2: 
 class Solution {
     public int numJewelsInStones(String J, String S) {
         Set<Character> jSet = new HashSet<>();
@@ -53,8 +58,9 @@ class Solution {
         return count;
     }
 }
-*/
 
+
+//Method3: 
 class Solution {
     public int numJewelsInStones(String J, String S) {
         if (J == null || J.length() < 1 || S == null || S.length() < 1) {
@@ -77,5 +83,4 @@ class Solution {
         return count;
     }
 }
-
 
