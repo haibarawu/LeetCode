@@ -1,10 +1,16 @@
-/****************************************
+/****************************************************************************************************
 938. Range Sum of BST
+
 Difficulty: Medium
+
+https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/
 
 Given the root node of a binary search tree, 
 return the sum of values of all nodes with value between L and R (inclusive).
 The binary search tree is guaranteed to have unique values.
+
+给定二叉搜索树的根结点 root，返回 L 和 R（含）之间的所有结点的值的和。
+二叉搜索树保证具有唯一的值。
 
 Example 1:
 Input: root = [10,5,15,3,7,null,18], L = 7, R = 15
@@ -18,7 +24,7 @@ Note:
 The number of nodes in the tree is at most 10000.
 The final answer is guaranteed to be less than 2^31.
 
-****************************************/
+****************************************************************************************************/
 
 
 /**
@@ -49,3 +55,4 @@ class Solution {
         return result;
     }
 }
+
