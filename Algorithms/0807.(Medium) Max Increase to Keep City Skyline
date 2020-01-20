@@ -69,8 +69,8 @@ class Solution {
     public int maxIncreaseKeepingSkyline(int[][] grid) {
         int row = grid.length;
         int col = grid[0].length;
-        int[] rowMaxes = new int[row];
-        int[] colMaxes = new int[col];
+        int[] rowMaxes = new int[row]; // view from left or right
+        int[] colMaxes = new int[col]; // view from top or bottom
 
         for (int r = 0; r < row; r ++)
             for (int c = 0; c < col; c ++) {
