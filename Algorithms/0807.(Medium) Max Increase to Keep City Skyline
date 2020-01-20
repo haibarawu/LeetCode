@@ -1,6 +1,9 @@
-/****************************************
+/****************************************************************************************************
 807. Max Increase to Keep City Skyline
+
 Difficulty: Medium
+
+https://leetcode.com/problems/max-increase-to-keep-city-skyline/submissions/
 
 In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there. 
 We are allowed to increase the height of any number of buildings, 
@@ -13,6 +16,14 @@ A city's skyline is the outer contour of the rectangles formed by all the buildi
 See the following example.
 
 What is the maximum total sum that the height of the buildings can be increased?
+
+在二维数组grid中，grid[i][j]代表位于某处的建筑物的高度。 
+我们被允许增加任何数量（不同建筑物的数量可能不同）的建筑物的高度。 高度 0 也被认为是建筑物。
+
+最后，从新数组的所有四个方向（即顶部，底部，左侧和右侧）观看的“天际线”必须与原始数组的天际线相同。 
+城市的天际线是从远处观看时，由所有建筑物形成的矩形的外部轮廓。 请看下面的例子。
+
+建筑物高度可以增加的最大总和是多少？
 
 Example:
 Input: grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]
@@ -38,9 +49,9 @@ Notes:
 All heights grid[i][j] are in the range [0, 100].
 All buildings in grid[i][j] occupy the entire grid cell: that is, they are a 1 x 1 x grid[i][j] rectangular prism.
 
-****************************************/
+****************************************************************************************************/
 
-/****************************************
+/****************************************************************************************************
 这道题给了我们一个二维数组，数组中的每个数字代表了一栋建筑的高度，
 那么从四个方向看去，就会有城市的天际线，这个天际线就是由这些建筑的最高的边形成的，
 现在让我们在不改变天际线的前提下，问最多可以增高建筑的总高度。
@@ -51,7 +62,7 @@ All buildings in grid[i][j] occupy the entire grid cell: that is, they are a 1 x
 然后就遍历每个建筑，用该行最大值和该列最大值中的较小值，作为建筑物的高度极限值，
 所以这个极限值和当前建筑的高度之差就是可以增加的高度，
 我们累计所有建筑的可增加的高度，就是所求的最大增高。
-****************************************/
+****************************************************************************************************/
 
 
 class Solution {
@@ -75,3 +86,4 @@ class Solution {
         return result;
     }
 }
+
