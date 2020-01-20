@@ -37,6 +37,7 @@ num's digits are 6 or 9.
 ****************************************************************************************************/
 
 
+//Method1: 
 class Solution {
     public int maximum69Number (int num) {
         String s = Integer.toString(num);
@@ -52,6 +53,37 @@ class Solution {
         }
         
         int result = Integer.parseInt(s);
+        
+        return result;
+    }
+}
+
+
+//Method2:
+class Solution {
+    public int maximum69Number (int num) {
+        int result = 0;
+        Stack<Integer> stack = new Stack<>();
+        boolean changed = false;
+        
+        while (num > 0)
+        {
+            stack.push(num % 10);
+            num = num / 10;
+        }
+        
+        while (!stack.isEmpty())
+        {
+            int digit = stack.pop();
+            
+            if (digit == 6 && !changed)
+            {
+                digit = 9;
+                changed = true;
+            }
+            
+            result = 10 * result + digit;
+        }
         
         return result;
     }
