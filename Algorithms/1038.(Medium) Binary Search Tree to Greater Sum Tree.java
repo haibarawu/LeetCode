@@ -59,6 +59,7 @@ The given tree is a binary search tree.
  */
 
 
+//Method1: 
 class Solution {
     private int sum = 0;
     public TreeNode bstToGst(TreeNode root) {
@@ -77,6 +78,38 @@ class Solution {
         }
         
         return root;
+    }
+}
+
+
+/****************************************************************************************************/
+
+
+//Method2:
+/*根据二叉搜索树的性质，我们只需按照反转的中序遍历即可求到某个节点的更大值和。*/
+/*即：右 -> 根 -> 左*/
+class Solution {
+    public TreeNode bstToGst(TreeNode root) {
+        DFS(root);
+        return root;
+    }
+    
+    int sum = 0;
+    private void DFS(TreeNode node) {
+        if(node == null) {
+            return;
+        }
+        
+        if(node.right != null) {
+            DFS(node.right);
+        }
+        
+        node.val += sum;
+        sum = node.val;
+        
+        if(node.left != null) {
+            DFS(node.left);
+        }
     }
 }
 
