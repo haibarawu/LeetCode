@@ -1,4 +1,4 @@
-/********************************************************************************
+/****************************************************************************************************
 579. Find Cumulative Salary of an Employee
 
 Difficulty: Hard
@@ -6,10 +6,9 @@ Difficulty: Hard
 The Employee table holds the salary information in a year.
 
 Write a SQL to get the cumulative sum of an employee's salary over a period of 3 months but exclude the most recent month.
-
 The result should be displayed by 'Id' ascending, and then by 'Month' descending.
 
-Example
+Example: 
 
 Input
 | Id | Month | Salary |
@@ -57,8 +56,28 @@ month '3' with 60 and month '2' with 40. So the cumulative salary is as followin
 | 3  | 3     | 100    |
 | 3  | 2     | 40     |
 
-********************************************************************************/
+****************************************************************************************************/
 
 
+SELECT EA.Id, EA.Month, SUM(EB.Salary) AS Salary 
+FROM   
+(
+  SELECT E1.* 
+  FROM Employee AS E1 
+  LEFT JOIN 
+  (
+    SELECT Id, MAX(Month) AS Month 
+    FROM Employee 
+    GROUP BY Id
+  ) AS E2 
+  ON E1.Id = E2.Id 
+  WHERE E1.Month < E2.Month
+) AS EA 
+LEFT JOIN Employee AS EB 
+ON EA.Id = EB.Id 
+WHERE EB.Month >= EA.Month - 2
+  AND EB.Month <= EA.Month
+GROUP BY EA.Id, EA.Month 
+ORDER BY EA.Id, EA.Month DESC
 
 
