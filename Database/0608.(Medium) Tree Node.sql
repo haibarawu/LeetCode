@@ -1,4 +1,4 @@
-/********************************************************************************
+/****************************************************************************************************
 608. Tree Node
 
 Difficulty: Medium
@@ -45,7 +45,24 @@ And here is the image of the sample tree as below:
 
 Note
 If there is only one node on the tree, you only need to output its root attributes.
-********************************************************************************/
+****************************************************************************************************/
+
+
+/****************************************************************************************************
+DROP TABLE IF EXISTS tree;
+
+CREATE TABLE tree
+(
+id int,
+p_id int
+);
+
+INSERT INTO tree VALUES (1, null);
+INSERT INTO tree VALUES (2, 1);
+INSERT INTO tree VALUES (3, 1);
+INSERT INTO tree VALUES (4, 2);
+INSERT INTO tree VALUES (5, 2);
+****************************************************************************************************/
 
 
 --Method1:
@@ -58,8 +75,12 @@ FROM tree
 ORDER BY id
 
 
+/****************************************************************************************************/
+
+
 --Method2: 
 SELECT id, IIF(ISNULL(p_id), 'Root', IIF(id IN (SELECT p_id FROM tree), 'Inner', 'Leaf')) AS Type 
 FROM tree 
 ORDER BY id
+
 
