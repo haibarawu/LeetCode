@@ -1,4 +1,4 @@
-/********************************************************************************
+/******************************************************************************************
 185. Department Top Three Salaries
 
 Difficulty: Hard
@@ -40,7 +40,8 @@ For the above tables, your SQL query should return the following rows (order of 
 Explanation:
 In IT department, Max earns the highest salary, both Randy and Joe earn the second highest salary, and Will earns the third highest salary. 
 There are only two employees in the Sales department, Henry earns the highest salary while Sam earns the second highest salary.
-********************************************************************************/
+
+******************************************************************************************/
 
 
 SELECT Department,
@@ -57,4 +58,5 @@ FROM (
 ) AS rank
 WHERE Rank IN (1,2,3)
 ORDER BY Department, Salary
+
 
