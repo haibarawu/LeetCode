@@ -1,4 +1,4 @@
-/*
+/****************************************************************************************************
 0181. Employees Earning More Than Their Managers
 
 Difficulty: Easy
@@ -22,11 +22,13 @@ For the above table, Joe is the only employee who earns more than his manager.
 | Joe      |
 +----------+
 
-*/
+****************************************************************************************************/
+
 
 SELECT employee.Name AS 'Employee'
 FROM Employee AS employee
 INNER JOIN Employee AS manager
 ON employee.ManagerId = manager.Id
 AND employee.Salary > manager.Salary
+
 
