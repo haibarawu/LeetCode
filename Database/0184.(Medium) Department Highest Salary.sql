@@ -45,7 +45,7 @@ FROM (
   SELECT e.Name AS Employee,
          e.Salary, 
          d.Name AS Department, 
-         RANK() OVER(PARTITION BY DepartmentId ORDER BY Salary DESC) AS Rank
+         DENSE_RANK() OVER(PARTITION BY DepartmentId ORDER BY Salary DESC) AS Rank
   FROM Employee AS e
   INNER JOIN Department AS d
   ON e.DepartmentId = d.Id
