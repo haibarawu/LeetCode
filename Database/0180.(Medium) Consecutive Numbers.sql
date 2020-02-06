@@ -1,4 +1,4 @@
-/*
+/****************************************************************************************************
 0180. Consecutive Numbers
 
 Difficulty: Medium
@@ -24,15 +24,15 @@ For example, given the above Logs table,
 | 1               |
 +-----------------+
 
-*/
+****************************************************************************************************/
 
 
 --Method1:
 SELECT DISTINCT Num AS ConsecutiveNums
 FROM (
     SELECT Num,
-            LAG(Num) OVER(ORDER BY Id) AS lag,
-            LEAD(Num) OVER(ORDER BY Id) AS lead
+            LAG(Num, 1) OVER(ORDER BY Id) AS lag,
+            LEAD(Num, 1) OVER(ORDER BY Id) AS lead
     FROM Logs) AS l
 WHERE Num = lag AND Num = lead
 
