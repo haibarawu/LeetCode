@@ -1,4 +1,4 @@
-/********************************************************************************
+/****************************************************************************************************
 569. Median Employee Salary
 
 Difficulty: Hard
@@ -38,22 +38,31 @@ Bonus points if you can solve it without using any built-in SQL functions.
 |9    | B          | 1154   |
 |14   | C          | 2645   |
 +-----+------------+--------+
-********************************************************************************/
+****************************************************************************************************/
 
 
-WITH ranks AS(
-SELECT
-Id, Company, Salary,
-1.0*ROW_NUMBER() OVER(PARTITION BY Company ORDER BY Salary) AS rank
-FROM Employee
+/****************************************************************************************************
+解题思路：
+1）每个 company 中对 salary 排序 rank。
+2）找出每个 company 的 rank的中间数 avg_rank。
+3）找出与中间数 avg_rank 相差不到 1 的 rank。（如果总个数为奇数，则中位数就为中间的数；如果总个数为偶数，则中位数为中间的两个数。）
+****************************************************************************************************/
+
+
+WITH ranks AS (
+  SELECT
+  Id, Company, Salary,
+  1.0 * ROW_NUMBER() OVER(PARTITION BY Company ORDER BY Salary) AS rank
+  FROM Employee
 ),
 avg_ranks AS (
-SELECT
-Company, avg(rank) AS avg_rank
-FROM ranks
-GROUP BY Company
+  SELECT Company, AVG(rank) AS avg_rank
+  FROM ranks
+  GROUP BY Company
 )
+
 SELECT r.Id, r.Company, r.Salary
 FROM ranks AS r, avg_ranks AS a
 WHERE r.Company = a.Company AND ABS(r.rank - a.avg_rank) < 1
+
 
