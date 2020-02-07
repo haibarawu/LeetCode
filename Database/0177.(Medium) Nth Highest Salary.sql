@@ -1,4 +1,4 @@
-/*
+/****************************************************************************************************
 0177. Nth Highest Salary
 
 Difficulty: Medium
@@ -20,7 +20,7 @@ If there is no nth highest salary, then the query should return null.
 | 200                    |
 +------------------------+
 
-*/
+****************************************************************************************************/
 
 -- Method1:
 CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
@@ -38,6 +38,9 @@ BEGIN
 END
 
 
+/****************************************************************************************************/
+
+
 --Method2:
 CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
 BEGIN
@@ -51,4 +54,26 @@ BEGIN
                 WHERE E2.Salary >= E1.Salary)
     );
 END
+
+
+/****************************************************************************************************/
+
+
+--Method3:
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    RETURN (
+        /* Write your T-SQL query statement below. */
+        SELECT ISNULL(
+          (
+            SELECT Salary
+            FROM Employee
+            ORDER BY Salary DESC
+            OFFSET (@N - 1) ROWS 
+            FETCH NEXT 1 ROWS ONLY
+          ), NULL)
+            AS NthHighestSalary
+    );
+END
+
 
