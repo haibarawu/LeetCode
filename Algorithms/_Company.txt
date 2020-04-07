@@ -1,0 +1,43 @@
+/****************************** High Frequency Problems by Company ******************************/
+/****************************** Leetcode (Lintcode)  ******************************/
+
+Facebook:
+206. Reverse Linked List (35)
+1. Two Sum (56)
+88. Merge Sorted Array (64)
+26. Remove Duplicates from Sorted Array (100)
+56. Merge Intervals (156)
+38. Count and Say (420)
+20. Valid Parentheses (423)
+784. Letter Case Permutation (1032)
+168. Excel Sheet Column Title (1350)
+
+/********** ********** ********** ********** ********** ********** ********** ********** ********** **********/
+
+Amazon:
+
+21. Merge Two Sorted Lists (165)
+2. Add Two Numbers (167)
+762. Prime Number of Set Bits in Binary Representation (1046)
+204. Count Primes (1324)
+937 Reorder Log Files (1380 Log Sorting)
+200. Number of Islands (433)
+
+/********** ********** ********** ********** ********** ********** ********** ********** ********** **********/
+
+Microsoft:
+
+94. Binary Tree Inorder Traversal (67)
+114. Flatten Binary Tree to Linked List (453)
+
+/********** ********** ********** ********** ********** ********** ********** ********** ********** **********/
+
+Google:
+
+422. Valid Word Square (888)
+293. Flip Game (914)
+800. Similar RGB Color (1017)
+276. Paint Fence (514)
+66. Plus One (407)
+
+
