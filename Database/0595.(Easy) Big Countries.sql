@@ -1,9 +1,20 @@
-/********************************************************************************
+/****************************************************************************************************
 595. Big Countries
+595. 大的国家
 
 Difficulty: Easy
 
+SQL Schema:
+Create table If Not Exists World (name varchar(255), continent varchar(255), area int, population int, gdp int)
+Truncate table World
+insert into World (name, continent, area, population, gdp) values ('Afghanistan', 'Asia', '652230', '25500100', '20343000000')
+insert into World (name, continent, area, population, gdp) values ('Albania', 'Europe', '28748', '2831741', '12960000000')
+insert into World (name, continent, area, population, gdp) values ('Algeria', 'Africa', '2381741', '37100000', '188681000000')
+insert into World (name, continent, area, population, gdp) values ('Andorra', 'Europe', '468', '78115', '3712000000')
+insert into World (name, continent, area, population, gdp) values ('Angola', 'Africa', '1246700', '20609294', '100990000000')
+
 There is a table World
+这里有张 World 表
 +-----------------+------------+------------+--------------+---------------+
 | name            | continent  | area       | population   | gdp           |
 +-----------------+------------+------------+--------------+---------------+
@@ -15,20 +26,24 @@ There is a table World
 +-----------------+------------+------------+--------------+---------------+
 
 A country is big if it has an area of bigger than 3 million square km or a population of more than 25 million.
+如果一个国家的面积超过300万平方公里，或者人口超过2500万，那么这个国家就是大国家。
 
 Write a SQL solution to output big countries' name, population and area.
+编写一个SQL查询，输出表中所有大国家的名称、人口和面积。
 
 For example, according to the above table, we should output:
+例如，根据上表，我们应该输出:
 +--------------+-------------+--------------+
 | name         | population  | area         |
 +--------------+-------------+--------------+
 | Afghanistan  | 25500100    | 652230       |
 | Algeria      | 37100000    | 2381741      |
 +--------------+-------------+--------------+
-********************************************************************************/
+****************************************************************************************************/
 
 
 SELECT name, population, area
 FROM world
 WHERE area > 3000000 OR population > 25000000
+
 
