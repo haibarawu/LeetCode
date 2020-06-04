@@ -1,7 +1,13 @@
-/********************************************************************************
+/****************************************************************************************************
 196. Delete Duplicate Emails
 
 Difficulty: Easy
+
+Create table If Not Exists Person (Id int, Email varchar(255))
+Truncate table Person
+insert into Person (Id, Email) values ('1', 'john@example.com')
+insert into Person (Id, Email) values ('2', 'bob@example.com')
+insert into Person (Id, Email) values ('3', 'john@example.com')
 
 Write a SQL query to delete all duplicate email entries in a table named Person, keeping only unique emails based on its smallest Id.
 +----+------------------+
@@ -23,7 +29,7 @@ For example, after running your query, the above Person table should have the fo
 
 Note:
 Your output is the whole Person table after executing your sql. Use delete statement.
-********************************************************************************/
+****************************************************************************************************/
 
 
 --Method1:
@@ -39,4 +45,5 @@ WHERE Id IN (SELECT Id
                      ROW_NUMBER() OVER(PARTITION BY Email ORDER BY Id) AS DupID
                    FROM Person) AS dups
              WHERE DupID > 1)
+
 
