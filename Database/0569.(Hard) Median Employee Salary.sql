@@ -1,10 +1,12 @@
 /****************************************************************************************************
 569. Median Employee Salary
+569. 员工薪水中位数
 
 Difficulty: Hard
 
 The Employee table holds all employees. 
 The employee table has three columns: Employee Id, Company Name, and Salary.
+Employee 表包含所有员工。Employee 表有三列：员工Id，公司名和薪水。
 +-----+------------+--------+
 |Id   | Company    | Salary |
 +-----+------------+--------+
@@ -28,7 +30,10 @@ The employee table has three columns: Employee Id, Company Name, and Salary.
 +-----+------------+--------+
 
 Write a SQL query to find the median salary of each company. 
+请编写SQL查询来查找每个公司的薪水中位数。
+
 Bonus points if you can solve it without using any built-in SQL functions.
+挑战点：你是否可以在不使用任何内置的SQL函数的情况下解决此问题。
 +-----+------------+--------+
 |Id   | Company    | Salary |
 +-----+------------+--------+
