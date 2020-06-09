@@ -78,6 +78,6 @@ FROM (
   ON e.DepartmentId = d.Id
 ) AS rank
 WHERE Rank IN (1,2,3)
-ORDER BY Department, Salary
+ORDER BY Department, Salary DESC 
 
 
